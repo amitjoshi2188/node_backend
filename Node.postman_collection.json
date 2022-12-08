@@ -1,0 +1,580 @@
+{
+	"info": {
+		"_postman_id": "e8aeb011-516e-4dc2-8634-d01daec540b5",
+		"name": "Node",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19600586"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Add Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": \"http://localhost:3000/public/uploads/Surface-Pro-7-128GB-1604665289664.png\",\r\n    \"brand\": \"ASUS\",\r\n    \"price\": 250,\r\n    \"rating\": null,\r\n    \"numReviews\": null,\r\n    \"isFeatured\": false,\r\n    \"name\": \"Sample Product\",\r\n    \"description\": \"Tablet PC - Intel Core i3 1005G1 Ice Lake, touchscreen 12.3\\\" IPS 2736 × 1824, RAM 4GB LPDDR4X, Intel UHD Graphics\",\r\n    \"category\": \"637a71baaa299950f0bfe1a7\",\r\n    \"countInStock\": 8,\r\n    \"richDescription\": \"richDescription\",\r\n    \"images\": [\r\n        \"http://localhost:3000/public/uploads/5f15d8852a025143f9593a7c-1604665316399.png\",\r\n        \"http://localhost:3000/public/uploads/5f15d8852a025143f9593a7c-1604665316400.jpeg\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/products/add-product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"add-product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": \"http://localhost:3000/public/uploads/Surface-Pro-7-128GB-1604665289664.png\",\r\n    \"brand\": \"Microsoft\",\r\n    \"price\": 250,\r\n    \"rating\": null,\r\n    \"numReviews\": null,\r\n    \"isFeatured\": false,\r\n    \"name\": \"Sample Product\",\r\n    \"description\": \"Tablet PC - Intel Core i3 1005G1 Ice Lake, touchscreen 12.3\\\" IPS 2736 × 1824, RAM 4GB LPDDR4X, Intel UHD Graphics\",\r\n    \"category\": \"637a71baaa299950f0bfe1a9\",\r\n    \"countInStock\": 8,\r\n    \"richDescription\": \"richDescription Update new\",\r\n    \"images\": [\r\n        \"http://localhost:3000/public/uploads/5f15d8852a025143f9593a7c-1604665316399.png\",\r\n        \"http://localhost:3000/public/uploads/5f15d8852a025143f9593a7c-1604665316400.jpeg\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/products/637c775db3f8ef60e31a9d9c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"637c775db3f8ef60e31a9d9c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/products/products-listing/637c775db3f8ef60e31a9d91",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"products-listing",
+								"637c775db3f8ef60e31a9d91"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products-listing",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/products/products-listing?categories=5f15d54cf3a046427a1c26e3,5f15d467f3a046427a1c26e1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"products-listing"
+							],
+							"query": [
+								{
+									"key": "categories",
+									"value": "5f15d54cf3a046427a1c26e3,5f15d467f3a046427a1c26e1",
+									"description": "optional param"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get featured Products as per limit",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/products/get/featured/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"get",
+								"featured",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Total number of Products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/products/get/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"get",
+								"count"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "category listing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/category/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"category",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Toys\",\r\n    \"icon\": \"icon-toys\",\r\n    \"color\": \"#dsf45w\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/category/637a71baaa299950f0bfe1a9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"category",
+								"637a71baaa299950f0bfe1a9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/category/637a7258453219e20d6155d0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"category",
+								"637a7258453219e20d6155d0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "category by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/category/5f15d467f3a046427a1c26e1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"category",
+								"5f15d467f3a046427a1c26e1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pinal Joshi\",\r\n    \"email\": \"PinalJoshi@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"phone\": \"8320084017\",\r\n    \"city\": \"Ahmedabad\",\r\n    \"country\": \"IN\",\r\n    \"street\": \"Anil starch mill\",\r\n    \"zip\": \"380024\",\r\n    \"apartment\": \"21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ManojJoshi@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Amit P Joshi\",\r\n    \"email\": \"amitjoshi2188@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"phone\": \"8460370305\",\r\n    \"isAdmin\": true,\r\n    \"street\": \"Bapunagar\",\r\n    \"apartment\": \"21\",\r\n    \"zip\": \"380024\",\r\n    \"city\": \"Ahmedabad\",\r\n    \"country\": \"IN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/63809fba49dec8692f08caea",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"63809fba49dec8692f08caea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users By id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/609d65943373711346c5e950",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"609d65943373711346c5e950"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users Listing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Total number of Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/get/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"get",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/6384581e51c05ff7adbb33ee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"6384581e51c05ff7adbb33ee"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Order Listing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/order/609d7eea3373711346c5e953",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"order",
+								"609d7eea3373711346c5e953"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get request demo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/todos/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"todos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzgwYWEwZTk0ODYyMzM2MTMzNjNmMWIiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2Njk2MTU0MDgsImV4cCI6MTY2OTcwMTgwOH0.Eju2IoB2XjdV_YbXgVyANPih3Ex8vEIcZ7gJQglCM3o",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
