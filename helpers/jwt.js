@@ -1,4 +1,4 @@
-var { expressjwt: jwt } = require("express-jwt");
+let { expressjwt: jwt } = require("express-jwt");
 
 function authJwt() {
   const secret = process.env.secret;
@@ -10,9 +10,13 @@ function authJwt() {
   }).unless({
     //excludes API for token verification.
     path: [
+      {
+        url: /\/api\/v1\/books(.*)/, methods: ["GET", "POST", "PUT", "DELETE"]// allowing selective methods. 
+      },
       `${api}/users/login`,
       `${api}/users/register`,
-      { url: /\/api\/v1\/categories(.*)/, methods: ["GET", "OPTIONS"] },
+      //{ url: `${api}/category(.*)/`, methods: ["GET", "OPTIONS"] },
+      { url: /\/api\/v1\/category(.*)/, methods: ["GET", "OPTIONS"] },
       { url: /\/api\/v1\/products(.*)/, methods: ["GET", "OPTIONS"] }, // allow all request which start with api/v1/products and method is get or options
       { url: /\/public\/uploads(.*)/, methods: ["GET", "OPTIONS"] }, // allow all request which start with api/v1/products and method is get or options
     ],

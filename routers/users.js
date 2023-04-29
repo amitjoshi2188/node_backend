@@ -6,6 +6,7 @@ const httpStatus = require("http-status-codes");
 const bcrypt = require("bcryptjs"); // to encrypt string.
 const { Router, response } = require("express");
 const jwt = require("jsonwebtoken");
+const Validator = require('../middlewares/Validator');
 
 // Users listing.
 router.get("/", async (request, response) => {
@@ -38,7 +39,7 @@ router.get("/:userId", async (request, response) => {
       success: false,
     });
   }
-  return response.status(httpStatus.OK).json({
+  return response.status(httpStatus.StatusCodes.OK).json({
     success: true,
     data: user,
   });
@@ -115,7 +116,7 @@ router.put("/:userId", async (request, response) => {
 
 //Login
 
-router.post("/login", async (request, response) => {
+router.post("/login", Validator('login'), async (request, response) => {
   const user = await User.findOne({ email: request.body.email }).select("-__v");
   const secret = process.env.secret; //getting from env file.
   if (!user) {
@@ -142,7 +143,7 @@ router.post("/login", async (request, response) => {
 });
 
 //Register User API
-router.post("/register", async (request, response) => {
+router.post("/register", Validator('register'), async (request, response) => {
   let user = new User({
     name: request.body.name,
     email: request.body.email,

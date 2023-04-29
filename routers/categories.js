@@ -3,8 +3,11 @@ const express = require("express");
 const router = express.Router();
 const { request, response } = require("express");
 const httpStatus = require("http-status-codes");
+const Joi = require('joi');
 
 const mongoose = require("mongoose");
+const { category } = require("../validators");
+const Validator = require('../middlewares/Validator');
 
 //Category listing
 router.get("/", async (request, response) => {
@@ -31,8 +34,8 @@ router.get("/:categoryId", async (request, response) => {
     });
   }
   const category = await Category.findById(request.params.categoryId).select(
-    " -__v"
-  );
+    " -__v");
+
   if (!category) {
     return response
       .status(httpStatus.StatusCodes.NOT_FOUND)
@@ -44,8 +47,48 @@ router.get("/:categoryId", async (request, response) => {
     .json({ success: true, data: category });
 });
 
+
+function validateFunction(req) {
+
+  const schema = Joi.object({
+    name: Joi.string().min(6).required(),
+    icon: Joi.string().min(6).required(),
+    //    color: Joi.string().allow("")
+  });
+
+  const options = {
+    abortEarly: false, // include all errors
+    //   allowUnknown: true, // ignore unknown props
+    stripUnknown: true, // remove unknown props
+    errors: {
+      wrap: {
+        label: false
+      }
+    }
+  };
+
+  return schema.validate(req, options);
+}
+
 //post request
-router.post("/", async (request, response) => {
+router.post("/", Validator('category'), async (request, response) => {
+  //  const { body } = request;
+  //  const { error } = validateFunction(body);
+
+  // if (error) {
+  //   let errorsArray = [];
+
+  //   error.details.forEach(element => {
+  //     console.log(element.message);
+  //     errorsArray.push(element.message);
+  //   });
+
+  //   return response.status(httpStatus.StatusCodes.BAD_REQUEST).json({
+  //     success: false,
+  //     message: errorsArray,
+  //   });
+
+  // } else {
   let category = new Category({
     name: request.body.name,
     icon: request.body.icon,
@@ -53,17 +96,20 @@ router.post("/", async (request, response) => {
   });
 
   category = await category.save();
+
   if (!category) {
     return response.status(httpStatus.StatusCodes.BAD_REQUEST).json({
       success: false,
       message: "Category not created.",
     });
   }
+
   return response.status(httpStatus.StatusCodes.CREATED).json({
     success: true,
     message: "Category created successfully.",
     data: category,
   });
+  //  }
 });
 
 // delete route
